@@ -12,25 +12,29 @@ class AllCountries extends StatefulWidget {
 
 class _AllCountriesState extends State<AllCountries> {
   List countries = [];
+  List filteredCountries = [];
   getCountries() async {
     var response = await Dio().get('https://restcountries.com/v2/all');
     return response.data;
   }
-
-
+ 
   bool isSearch = false;
 
   @override
   void initState() {
     getCountries().then((data) {
-    setState(() {
-            countries = data;
-          });    });
+      setState(() {
+        countries = filteredCountries = data;
+      });
+    });
     super.initState();
   }
 
   void filterCountries(value) {
-    print(value);
+    setState(() {
+      filteredCountries =
+        countries.where((country) => country['name'] == 'India').toList();
+    });
   }
 
   @override
@@ -75,38 +79,36 @@ class _AllCountriesState extends State<AllCountries> {
       body: Container(
         child: Padding(
             padding: const EdgeInsets.all(10.0),
-            child:countries.length >0 ? ListView.builder(
-              itemCount: countries.length,
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (context) {
-                      return Country(countries[index]);
-                    }));
-                  },
-                  child: Card(
-                      elevation: 10,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 10, horizontal: 10),
-                        child: Text(countries[index]['name']),
-                      )),
-                );
-              },
-            ): Container(
-              width: double.infinity,
-              color:Color.fromARGB(255, 235, 242, 246),
-              child: Center(
-                
-                child: 
-              SpinKitDoubleBounce (
-                color: Color.fromARGB(255, 10, 131, 237),
-                size: 50.0,
-)
-              ),
-            )
-            ),
+            child: countries.length > 0
+                ? ListView.builder(
+                    itemCount: filteredCountries.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (context) {
+                            return Country(filteredCountries[index]);
+                          }));
+                        },
+                        child: Card(
+                            elevation: 10,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 10),
+                              child: Text(filteredCountries[index]['name']),
+                            )),
+                      );
+                    },
+                  )
+                : Container(
+                    width: double.infinity,
+                    color: Color.fromARGB(255, 235, 242, 246),
+                    child: Center(
+                        child: SpinKitDoubleBounce(
+                      color: Color.fromARGB(255, 10, 131, 237),
+                      size: 50.0,
+                    )),
+                  )),
       ),
     );
   }
