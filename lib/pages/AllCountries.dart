@@ -17,7 +17,7 @@ class _AllCountriesState extends State<AllCountries> {
     var response = await Dio().get('https://restcountries.com/v2/all');
     return response.data;
   }
- 
+
   bool isSearch = false;
 
   @override
@@ -33,7 +33,7 @@ class _AllCountriesState extends State<AllCountries> {
   void filterCountries(value) {
     setState(() {
       filteredCountries =
-        countries.where((country) => country['name'] == 'India').toList();
+          countries.where((country) => country['name'].toLowerCase().contains( value.toLowerCase())).toList();
     });
   }
 
@@ -64,6 +64,8 @@ class _AllCountriesState extends State<AllCountries> {
                   onPressed: () {
                     setState(() {
                       this.isSearch = !this.isSearch;
+                      filteredCountries = countries;
+
                     });
                   },
                   icon: Icon(Icons.cancel))
