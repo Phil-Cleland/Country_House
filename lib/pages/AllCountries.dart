@@ -1,6 +1,7 @@
 import 'package:country_house/pages/Country.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class AllCountries extends StatefulWidget {
   const AllCountries({Key? key}) : super(key: key);
@@ -16,21 +17,15 @@ class _AllCountriesState extends State<AllCountries> {
     return response.data;
   }
 
-  void Hey() async {
-    var response = await Dio().get('https://restcountries.com/v2/all');
-    print(response.data);
-  }
 
   bool isSearch = false;
 
   @override
   void initState() {
     getCountries().then((data) {
-      setState(() {
-        countries = data;
-      });
-    });
-    Hey();
+    setState(() {
+            countries = data;
+          });    });
     super.initState();
   }
 
@@ -81,7 +76,8 @@ class _AllCountriesState extends State<AllCountries> {
       body: Container(
         child: Padding(
             padding: const EdgeInsets.all(10.0),
-            child: ListView.builder(
+            child:countries.length >0 ? ListView.builder(
+              itemCount: countries.length,
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   onTap: () {
@@ -99,7 +95,15 @@ class _AllCountriesState extends State<AllCountries> {
                       )),
                 );
               },
-            )),
+            ): Center(
+              
+              child: 
+            SpinKitDoubleBounce (
+              color: Colors.black,
+              size: 50.0,
+)
+            )
+            ),
       ),
     );
   }
