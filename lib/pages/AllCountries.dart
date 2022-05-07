@@ -35,7 +35,6 @@ class _AllCountriesState extends State<AllCountries> {
 
   @override
   Widget build(BuildContext context) {
-    print(countries);
     return Scaffold(
       appBar: AppBar(
         title: !isSearch
@@ -102,7 +101,7 @@ class _AllCountriesState extends State<AllCountries> {
                 
                 child: 
               SpinKitDoubleBounce (
-                color: Colors.black,
+                color: Color.fromARGB(255, 10, 131, 237),
                 size: 50.0,
 )
               ),
