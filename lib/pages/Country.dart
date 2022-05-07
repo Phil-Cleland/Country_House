@@ -11,7 +11,7 @@ class Country extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
+        backgroundColor: Colors.black,
         title: Text(country['name']),
       ),
       body: Padding(

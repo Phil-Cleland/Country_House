@@ -41,6 +41,7 @@ class _AllCountriesState extends State<AllCountries> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: !isSearch
             ? Text('All Countries')
             : TextField(
