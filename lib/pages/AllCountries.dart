@@ -95,13 +95,17 @@ class _AllCountriesState extends State<AllCountries> {
                       )),
                 );
               },
-            ): Center(
-              
-              child: 
-            SpinKitDoubleBounce (
-              color: Colors.black,
-              size: 50.0,
+            ): Container(
+              width: double.infinity,
+              color:Color.fromARGB(255, 235, 242, 246),
+              child: Center(
+                
+                child: 
+              SpinKitDoubleBounce (
+                color: Colors.black,
+                size: 50.0,
 )
+              ),
             )
             ),
       ),
