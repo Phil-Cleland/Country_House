@@ -21,6 +21,8 @@ class _AllCountriesState extends State<AllCountries> {
     print(response.data);
   }
 
+  bool isSearch = false;
+
   @override
   void initState() {
     countries = getCountries();
@@ -33,8 +35,38 @@ class _AllCountriesState extends State<AllCountries> {
     print(countries);
     return Scaffold(
       appBar: AppBar(
-        title: Text('All Countries'),
-        centerTitle: true,
+        title: !isSearch ? Text('All Countries') :
+         TextField(
+           style: TextStyle(
+             color: Colors.white
+           ),
+           decoration: InputDecoration(
+             
+             icon: Icon(Icons.search,
+             color: Colors.white,),
+             hintText: 'Search Country Here ...',
+             hintStyle: TextStyle(
+               color: Colors.white,
+             )
+           ),
+         ),
+        actions: <Widget>[
+        isSearch ?
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  this.isSearch = !this.isSearch;
+                });
+              },
+              icon: Icon(Icons.cancel)):
+              IconButton(
+              onPressed: () {
+                setState(() {
+                  this.isSearch = !this.isSearch;
+                });
+              },
+              icon: Icon(Icons.search))
+        ],
       ),
       body: Container(
         child: Padding(
