@@ -2,6 +2,7 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/avd.dart';
+import 'package:country_house/pages/CountryMap.dart';
 
 class Country extends StatelessWidget {
   final Map country;
@@ -26,11 +27,17 @@ class Country extends StatelessWidget {
             FlipCard(
                 front: CountryCard('Population'),
                 back: BackCard(country['population'].toString())),
-            
             FlipCard(
                 front: CountryCard('Currency'),
                 back: BackCard(country['currencies'][0]['name'])),
-            FlipCard(front: CountryCard('Show Map'), back: BackCard('title')),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => CountryMap(),
+                    ),);
+              },
+              child: CountryCard('Show Map'),
+            ),
           ],
         ),
       ),
@@ -65,15 +72,15 @@ class BackCard extends StatelessWidget {
         elevation: 10,
         child: Center(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-          title,
-          style: TextStyle(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            title,
+            style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
                 letterSpacing: 5),
-        ),
-            )));
+          ),
+        )));
   }
 }
