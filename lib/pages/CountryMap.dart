@@ -5,7 +5,10 @@ class CountryMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Country Map'),
+      ),
       
     );
   }
