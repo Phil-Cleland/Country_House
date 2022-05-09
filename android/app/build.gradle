@@ -26,29 +26,30 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion flutter.compileSdkVersion
+          
+compileSdkVersion 31
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+}
 
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+kotlinOptions {
+    jvmTarget = '1.8'
+}
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+}
 
-    defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.country_house"
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
-    }
+defaultConfig {
+    applicationId "com.example.country_house"
+    minSdkVersion 21
+    multiDexEnabled true
+    targetSdkVersion 30
+    versionCode 1
+    versionName "1.0.0"
+}
 
     buildTypes {
         release {
