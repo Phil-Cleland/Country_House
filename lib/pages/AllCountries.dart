@@ -32,8 +32,10 @@ class _AllCountriesState extends State<AllCountries> {
 
   void filterCountries(value) {
     setState(() {
-      filteredCountries =
-          countries.where((country) => country['name'].toLowerCase().contains( value.toLowerCase())).toList();
+      filteredCountries = countries
+          .where((country) =>
+              country['name'].toLowerCase().contains(value.toLowerCase()))
+          .toList();
     });
   }
 
@@ -66,7 +68,6 @@ class _AllCountriesState extends State<AllCountries> {
                     setState(() {
                       this.isSearch = !this.isSearch;
                       filteredCountries = countries;
-
                     });
                   },
                   icon: Icon(Icons.cancel))
@@ -88,10 +89,8 @@ class _AllCountriesState extends State<AllCountries> {
                     itemBuilder: (BuildContext context, int index) {
                       return GestureDetector(
                         onTap: () {
-                          Navigator.of(context)
-                              .push(MaterialPageRoute(builder: (context) {
-                            return Country(filteredCountries[index]);
-                          }));
+                          Navigator.of(context).pushNamed(Country.routename,
+                              arguments: {filteredCountries[index]});
                         },
                         child: Card(
                             elevation: 10,
