@@ -10,6 +10,7 @@ class Country extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(country);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -32,9 +33,11 @@ class Country extends StatelessWidget {
                 back: BackCard(country['currencies'][0]['name'])),
             GestureDetector(
               onTap: () {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => CountryMap(),
-                    ),);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => CountryMap(country['name'], country['latlng']),
+                  ),
+                );
               },
               child: CountryCard('Show Map'),
             ),
