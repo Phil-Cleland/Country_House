@@ -5,6 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class AllCountries extends StatefulWidget {
   const AllCountries({Key? key}) : super(key: key);
+    static const routename = '/AllCountries';
 
   @override
   State<AllCountries> createState() => _AllCountriesState();
